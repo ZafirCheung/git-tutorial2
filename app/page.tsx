@@ -53,11 +53,6 @@ const faqItems = [
     answer:
       "Legality depends on your location, purpose, lawful basis and the source of indexed data. The service forbids stalking, harassment, doxxing, surveillance and eligibility decisions.",
   },
-  {
-    question: "Do I need an account?",
-    answer:
-      "The proposed flow allows a private preview before account creation. Abuse controls and paid access may require a verified account in production.",
-  },
 ];
 
 const comparisonRows = [
@@ -147,7 +142,6 @@ export default function Home() {
           <a href="#method">How it works</a>
           <a href="#faq">FAQ</a>
           <button type="button" onClick={() => setRemoveOpen(true)}>Remove me</button>
-          <a href="#final-cta">Account</a>
         </nav>
         <a className="header-cta" href="#search">Search a face</a>
       </header>
@@ -351,7 +345,7 @@ export default function Home() {
         <div className="content-width footer-grid">
           <div><a className="brand footer-brand" href="#top"><span className="brand-face">⌖</span><span>PRO</span><strong>MAI</strong></a><p>A face is a clue. Never a verdict.</p></div>
           <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><a href="#faq">FAQ</a></div>
-          <div><h3>SMALL PRINT</h3><a href="#top">About Promai</a><a href="#top">Terms of use</a><a href="#top">Privacy</a><button type="button" onClick={() => setRemoveOpen(true)}>Remove my photos</button><a href="#final-cta">Your account</a></div>
+          <div><h3>SMALL PRINT</h3><a href="#top">About Promai</a><a href="#top">Terms of use</a><a href="#top">Privacy</a><button type="button" onClick={() => setRemoveOpen(true)}>Remove my photos</button></div>
         </div>
         <div className="content-width legal-copy">
           <p>Promai is not a consumer reporting agency and this service is not a consumer report. You may not use it to make decisions about employment, tenancy, credit, insurance, benefits or any other purpose covered by the Fair Credit Reporting Act or similar law. Looking someone up does not entitle you to contact, follow or harass them.</p>

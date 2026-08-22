@@ -13,22 +13,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TraceLens — A face is a clue, not a verdict",
+  title: "Reverse Face Search for Lawful Checks | Promai",
   description:
-    "A privacy-first front-end concept for lawful public-web face similarity searches, fraud checks, and personal footprint audits.",
+    "A privacy-first reverse face search concept for personal footprint checks, consent-based verification and fraud prevention. Similarity is never identity.",
   openGraph: {
-    title: "TraceLens — A face is a clue, not a verdict",
+    title: "Promai — Find where a face shows up",
     description:
-      "Privacy-first visual leads for lawful checks. Similarity is never identity.",
+      "Privacy-first visual leads for lawful checks. A face is a clue, never a verdict.",
     type: "website",
-    images: [{ url: "/og.png", width: 1536, height: 1024 }],
+    images: [{ url: "/og-promai.png", width: 1536, height: 1024 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TraceLens — A face is a clue, not a verdict",
+    title: "Promai — Find where a face shows up",
     description:
       "Privacy-first visual leads for lawful checks. Similarity is never identity.",
-    images: ["/og.png"],
+    images: ["/og-promai.png"],
   },
 };
 

@@ -354,10 +354,10 @@ export default function Home() {
         <div className="content-width footer-grid">
           <div><a className="brand footer-brand" href="#top"><span className="brand-face">⌖</span><span>PRO</span><strong>MAI</strong></a><p>A face is a clue. Never a verdict.</p></div>
           <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><a href="#faq">FAQ</a></div>
-          <div><h3>SMALL PRINT</h3><a href="#top">About PROMAI</a><a href="/legal/terms">Terms of use</a><a href="/legal/privacy">Privacy</a><a href="/legal/removal">Removal policy</a><button type="button" onClick={() => setRemoveOpen(true)}>Remove my photos</button></div>
+          <div><h3>SMALL PRINT</h3><a href="/about">About PROMAI</a><a href="/legal/terms">Terms of use</a><a href="/legal/privacy">Privacy</a><a href="/legal/removal#request">Remove my photos</a></div>
         </div>
         <div className="content-width legal-copy">
-          <p>Promai is not a consumer reporting agency and this service is not a consumer report. You may not use it to make decisions about employment, tenancy, credit, insurance, benefits or any other purpose covered by the Fair Credit Reporting Act or similar law. Looking someone up does not entitle you to contact, follow or harass them.</p>
+          <p>PROMAI is not a consumer reporting agency and this service is not a consumer report. You may not use it to make decisions about employment, tenancy, credit, insurance, benefits or any other purpose covered by the Fair Credit Reporting Act or similar law. Looking someone up does not entitle you to contact, follow or harass them.</p>
           <span>© 2026 PROMAI · CONCEPT PROTOTYPE</span>
         </div>
       </footer>

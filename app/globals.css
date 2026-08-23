@@ -264,7 +264,7 @@ button { color: inherit; }
 .prototype-disclosure strong { font-family: var(--font-geist-mono), monospace; font-size: 9px; letter-spacing: .13em; }
 .prototype-disclosure p { margin: 8px 0 0; font-size: 12px; line-height: 1.6; }
 .legal-article { display: grid; gap: 0; }
-.legal-article section { padding: 34px 0; border-top: 2px solid var(--ink); }
+.legal-article section { padding: 34px 0; border-top: 2px solid var(--ink); scroll-margin-top: 96px; }
 .legal-article h2 { margin: 0 0 15px; font-size: clamp(24px,3vw,34px); font-weight: 900; letter-spacing: -.045em; }
 .legal-article p, .legal-article li { color: #51483d; font-size: 13px; line-height: 1.75; }
 .legal-article p { margin: 12px 0 0; }

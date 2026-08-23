@@ -31,7 +31,7 @@ export default function RemovalPage() {
         </ul>
       </section>
 
-      <section>
+      <section id="request">
         <h2>2. Free de-indexing</h2>
         <p>
           A production removal request will be free. It will not require a subscription,

@@ -24,9 +24,10 @@ export default function LegalPage({
           <span>PRO</span><strong>MAI</strong>
         </a>
         <nav aria-label="Legal navigation">
+          <a href="/about">About</a>
           <a href="/legal/terms">Terms</a>
           <a href="/legal/privacy">Privacy</a>
-          <a href="/legal/removal">Remove me</a>
+          <a href="/legal/removal#request">Remove me</a>
         </nav>
         <a className="legal-home-link" href="/">Back to search →</a>
       </header>
@@ -72,9 +73,10 @@ export default function LegalPage({
           </div>
           <div>
             <h3>POLICIES</h3>
+            <a href="/about">About PROMAI</a>
             <a href="/legal/terms">Terms of use</a>
             <a href="/legal/privacy">Privacy</a>
-            <a href="/legal/removal">Remove my photos</a>
+            <a href="/legal/removal#request">Remove my photos</a>
           </div>
         </div>
         <div className="content-width legal-copy">

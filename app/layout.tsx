@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://promai-tlr-demo.vercel.app"),
   title: "Reverse Face Search for Lawful Checks | Promai",
   description:
     "A privacy-first reverse face search concept for personal footprint checks, consent-based verification and fraud prevention. Similarity is never identity.",

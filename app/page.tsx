@@ -402,12 +402,22 @@ export default function Home() {
             <h2 id="board-title">A face can appear on many boards.<br />The score still is not a name.</h2>
             <p>Public profiles, news photos, forum avatars and old pages — only from sources the index is lawfully allowed to process.</p>
           </div>
-          <div className="portrait-strip" aria-label="Computer-generated demonstration portraits">
-            {faceCards.map((portrait, index) => (
-              <div className={`board-photo rotate-${(index % 5) + 1}`} key={`${portrait}-${index}`}>
-                <span className={`portrait ${portrait}`} role="img" aria-label="AI-generated demonstration portrait" />
-              </div>
-            ))}
+          <div
+            className="portrait-marquee"
+            role="img"
+            aria-label="A continuously scrolling row of computer-generated demonstration portraits"
+          >
+            <div className="portrait-track" aria-hidden="true">
+              {[0, 1].map((copy) => (
+                <div className="portrait-strip" key={copy}>
+                  {faceCards.map((portrait, index) => (
+                    <div className={`board-photo rotate-${(index % 5) + 1}`} key={`${copy}-${portrait}-${index}`}>
+                      <span className={`portrait ${portrait}`} />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
           <p className="content-width illustration-note">Illustration only — every face above is computer-generated. None is a real person or a search result.</p>
         </section>

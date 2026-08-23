@@ -278,9 +278,7 @@ button { color: inherit; }
 .checkout-modal-footer { display: grid; justify-items: center; padding: 25px 30px 28px; border-top: 2px solid rgba(23,17,12,.16); }
 .checkout-primary { width: 100%; padding: 18px 24px; border: 3px solid var(--ink); border-radius: 999px; background: var(--red); box-shadow: 6px 7px 0 var(--ink); color: white; font-size: clamp(14px,2.5vw,20px); font-weight: 900; cursor: pointer; }
 .checkout-primary:hover { transform: translateY(-1px); }
-.checkout-switches { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; }
 .checkout-switch { margin-top: 25px; padding: 0 0 3px; border: 0; border-bottom: 2px solid currentColor; background: transparent; color: #4f473d; font-size: 11px; font-weight: 780; cursor: pointer; }
-.checkout-switch--offer { color: var(--red); }
 .checkout-message { min-height: 18px; margin: 18px 0 0; color: var(--green); font-size: 10px; font-weight: 760; line-height: 1.5; text-align: center; }
 .checkout-fine-print { max-width: 650px; margin: 13px 0 0; color: #786f64; font-size: 8px; line-height: 1.55; text-align: center; }
 .checkout-fine-print a { text-decoration: underline; text-underline-offset: 2px; }

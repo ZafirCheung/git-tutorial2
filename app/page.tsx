@@ -117,6 +117,7 @@ export default function Home() {
   const [pricingView, setPricingView] = useState<PricingView>("subscriptions");
   const [selectedSubscription, setSelectedSubscription] = useState("Weekly");
   const [selectedPack, setSelectedPack] = useState("1 search");
+  const [retentionShown, setRetentionShown] = useState(false);
   const [checkoutMessage, setCheckoutMessage] = useState("");
 
   const activeSubscription =
@@ -144,7 +145,14 @@ export default function Home() {
     if (!pricingOpen) return;
 
     function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") setPricingOpen(false);
+      if (event.key !== "Escape") return;
+      if (pricingView !== "offer" && !retentionShown) {
+        setRetentionShown(true);
+        setPricingView("offer");
+        setCheckoutMessage("");
+      } else {
+        setPricingOpen(false);
+      }
     }
 
     const previousOverflow = document.body.style.overflow;
@@ -154,7 +162,7 @@ export default function Home() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", closeOnEscape);
     };
-  }, [pricingOpen]);
+  }, [pricingOpen, pricingView, retentionShown]);
 
   useEffect(() => {
     function openRemovalFromHash() {
@@ -201,8 +209,19 @@ export default function Home() {
     setPricingView(view);
     if (view === "subscriptions" && selection) setSelectedSubscription(selection);
     if (view === "packs" && selection) setSelectedPack(selection);
+    setRetentionShown(false);
     setCheckoutMessage("");
     setPricingOpen(true);
+  }
+
+  function requestClosePricing() {
+    if (pricingView !== "offer" && !retentionShown) {
+      setRetentionShown(true);
+      setPricingView("offer");
+      setCheckoutMessage("");
+      return;
+    }
+    setPricingOpen(false);
   }
 
   function previewCheckout() {
@@ -530,19 +549,19 @@ export default function Home() {
 
       {pricingOpen && (
         <div className="modal-backdrop pricing-backdrop">
-          <button className="modal-dismiss-layer" type="button" aria-label="Close pricing" onClick={() => setPricingOpen(false)} />
+          <button className="modal-dismiss-layer" type="button" aria-label="Close pricing" onClick={requestClosePricing} />
           <section className="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
             <span className="checkout-grab" aria-hidden="true" />
             <header className="checkout-modal-header">
               <div>
                 <span className="checkout-eyebrow">
-                  {pricingView === "subscriptions" ? "SOURCE PAGES LOCKED" : pricingView === "packs" ? "NO SUBSCRIPTION" : "ELIGIBLE OFFER"}
+                  {pricingView === "subscriptions" ? "SOURCE PAGES LOCKED" : pricingView === "packs" ? "NO SUBSCRIPTION" : "LIMITED-TIME OFFER"}
                 </span>
                 <h2 id="checkout-title">
                   {pricingView === "subscriptions" ? "See who posted every match." : pricingView === "packs" ? "Buy the searches outright." : "One face, one price."}
                 </h2>
               </div>
-              <button className="checkout-close" type="button" aria-label="Close pricing" onClick={() => setPricingOpen(false)}>×</button>
+              <button className="checkout-close" type="button" aria-label="Close pricing" onClick={requestClosePricing}>×</button>
             </header>
 
             <div className="checkout-modal-body">
@@ -597,7 +616,7 @@ export default function Home() {
 
               {pricingView === "offer" && (
                 <div className="checkout-offer">
-                  <p>Offer availability is verified at checkout. No subscription and no automatic renewal.</p>
+                  <p>Before you go: eligible customers can unlock one source-enabled search at this reduced price. No subscription and no automatic renewal.</p>
                   <button className="checkout-plan checkout-plan--selected" type="button" aria-pressed="true">
                     <span className="checkout-radio" aria-hidden="true" />
                     <span className="checkout-plan-copy">
@@ -617,12 +636,9 @@ export default function Home() {
               {pricingView === "subscriptions" ? (
                 <button className="checkout-switch" type="button" onClick={() => { setPricingView("packs"); setCheckoutMessage(""); }}>See one-time search packs</button>
               ) : pricingView === "packs" ? (
-                <div className="checkout-switches">
-                  <button className="checkout-switch" type="button" onClick={() => { setPricingView("subscriptions"); setCheckoutMessage(""); }}>See subscription plans</button>
-                  <button className="checkout-switch checkout-switch--offer" type="button" onClick={() => { setPricingView("offer"); setCheckoutMessage(""); }}>Check $2.99 offer eligibility</button>
-                </div>
+                <button className="checkout-switch" type="button" onClick={() => { setPricingView("subscriptions"); setCheckoutMessage(""); }}>See subscription plans</button>
               ) : (
-                <button className="checkout-switch" type="button" onClick={() => { setPricingView("packs"); setCheckoutMessage(""); }}>See all one-time packs</button>
+                <button className="checkout-switch" type="button" onClick={() => setPricingOpen(false)}>Not now</button>
               )}
               <p className="checkout-message" aria-live="polite">{checkoutMessage}</p>
               <p className="checkout-fine-print">

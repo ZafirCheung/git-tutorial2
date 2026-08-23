@@ -36,7 +36,10 @@ export default function SubscriptionPolicyPage() {
           as a one-time retention offer after they leave the standard plan selector. It is
           not a standard plan displayed for ordinary selection. That promotional purchase
           is non-recurring, is limited to the eligibility and availability stated at
-          checkout, and does not convert into a subscription.
+          checkout, and does not convert into a subscription. When PROMAI displays a
+          ten-minute countdown, the expiry time is retained for that browser session and
+          does not restart merely because the customer closes, refreshes or reopens the
+          offer. The purchase button becomes unavailable when the displayed time expires.
           Checkout controls if it shows a temporary discount, tax or different local price
           required by law.
         </p>

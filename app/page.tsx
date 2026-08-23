@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, DragEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, DragEvent, FormEvent, useCallback, useEffect, useRef, useState } from "react";
 
 const platforms = [
   "◎ Instagram",
@@ -56,6 +56,9 @@ const oneTimePacks = [
 ];
 
 type PricingView = "subscriptions" | "packs" | "offer";
+
+const RETENTION_OFFER_DURATION_MS = 10 * 60 * 1000;
+const RETENTION_OFFER_STORAGE_KEY = "promai-retention-offer-expires-at";
 
 const faqItems = [
   {
@@ -118,11 +121,37 @@ export default function Home() {
   const [selectedSubscription, setSelectedSubscription] = useState("Weekly");
   const [selectedPack, setSelectedPack] = useState("1 search");
   const [retentionShown, setRetentionShown] = useState(false);
+  const [offerExpiresAt, setOfferExpiresAt] = useState<number | null>(null);
+  const [offerRemainingSeconds, setOfferRemainingSeconds] = useState(10 * 60);
   const [checkoutMessage, setCheckoutMessage] = useState("");
 
   const activeSubscription =
     subscriptionPlans.find((plan) => plan.name === selectedSubscription) ?? subscriptionPlans[0];
   const activePack = oneTimePacks.find((pack) => pack.searches === selectedPack) ?? oneTimePacks[0];
+  const offerMinutes = String(Math.floor(offerRemainingSeconds / 60)).padStart(2, "0");
+  const offerSeconds = String(offerRemainingSeconds % 60).padStart(2, "0");
+  const offerExpired = offerRemainingSeconds <= 0;
+
+  const showRetentionOffer = useCallback(() => {
+    const now = Date.now();
+    const storedExpiry = Number(window.sessionStorage.getItem(RETENTION_OFFER_STORAGE_KEY));
+
+    if (Number.isFinite(storedExpiry) && storedExpiry > 0 && storedExpiry <= now) {
+      setPricingOpen(false);
+      return;
+    }
+
+    const expiresAt = Number.isFinite(storedExpiry) && storedExpiry > now
+      ? storedExpiry
+      : now + RETENTION_OFFER_DURATION_MS;
+
+    window.sessionStorage.setItem(RETENTION_OFFER_STORAGE_KEY, String(expiresAt));
+    setOfferExpiresAt(expiresAt);
+    setOfferRemainingSeconds(Math.max(0, Math.ceil((expiresAt - now) / 1000)));
+    setRetentionShown(true);
+    setPricingView("offer");
+    setCheckoutMessage("");
+  }, []);
 
   useEffect(() => {
     function handlePaste(event: ClipboardEvent) {
@@ -147,9 +176,7 @@ export default function Home() {
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
       if (pricingView !== "offer" && !retentionShown) {
-        setRetentionShown(true);
-        setPricingView("offer");
-        setCheckoutMessage("");
+        showRetentionOffer();
       } else {
         setPricingOpen(false);
       }
@@ -162,7 +189,19 @@ export default function Home() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", closeOnEscape);
     };
-  }, [pricingOpen, pricingView, retentionShown]);
+  }, [pricingOpen, pricingView, retentionShown, showRetentionOffer]);
+
+  useEffect(() => {
+    if (!pricingOpen || pricingView !== "offer" || !offerExpiresAt) return;
+
+    function updateCountdown() {
+      setOfferRemainingSeconds(Math.max(0, Math.ceil((offerExpiresAt! - Date.now()) / 1000)));
+    }
+
+    updateCountdown();
+    const interval = window.setInterval(updateCountdown, 1000);
+    return () => window.clearInterval(interval);
+  }, [pricingOpen, pricingView, offerExpiresAt]);
 
   useEffect(() => {
     function openRemovalFromHash() {
@@ -216,9 +255,7 @@ export default function Home() {
 
   function requestClosePricing() {
     if (pricingView !== "offer" && !retentionShown) {
-      setRetentionShown(true);
-      setPricingView("offer");
-      setCheckoutMessage("");
+      showRetentionOffer();
       return;
     }
     setPricingOpen(false);
@@ -617,21 +654,30 @@ export default function Home() {
               {pricingView === "offer" && (
                 <div className="checkout-offer">
                   <p>Before you go: eligible customers can unlock one source-enabled search at this reduced price. No subscription and no automatic renewal.</p>
-                  <button className="checkout-plan checkout-plan--selected" type="button" aria-pressed="true">
+                  <div className="checkout-countdown" role="timer" aria-label={`${offerMinutes} minutes and ${offerSeconds} seconds remaining`}>
+                    <span>This price holds for</span>
+                    <div>
+                      <span><strong>{offerMinutes}</strong><small>MIN</small></span>
+                      <b aria-hidden="true">:</b>
+                      <span><strong>{offerSeconds}</strong><small>SEC</small></span>
+                    </div>
+                  </div>
+                  <div className={`checkout-plan checkout-plan--selected ${offerExpired ? "checkout-plan--expired" : ""}`}>
                     <span className="checkout-radio" aria-hidden="true" />
                     <span className="checkout-plan-copy">
                       <span className="checkout-plan-title">Just one search<em>Eligible offer</em></span>
-                      <small>1 source-enabled face search</small>
+                      <small><s>$4.99</s> · Save 40% · 1 source-enabled face search</small>
                     </span>
                     <span className="checkout-plan-price"><strong>$2.99</strong></span>
-                  </button>
+                  </div>
+                  {offerExpired ? <p className="checkout-expired">This one-time offer has expired.</p> : null}
                 </div>
               )}
             </div>
 
             <footer className="checkout-modal-footer">
-              <button className="checkout-primary" type="button" onClick={previewCheckout}>
-                Reveal sources · {pricingView === "subscriptions" ? `${activeSubscription.price}${activeSubscription.interval}` : pricingView === "packs" ? activePack.price : "$2.99"} →
+              <button className="checkout-primary" type="button" onClick={previewCheckout} disabled={pricingView === "offer" && offerExpired}>
+                {pricingView === "offer" && offerExpired ? "Offer expired" : `Reveal sources · ${pricingView === "subscriptions" ? `${activeSubscription.price}${activeSubscription.interval}` : pricingView === "packs" ? activePack.price : "$2.99"} →`}
               </button>
               {pricingView === "subscriptions" ? (
                 <button className="checkout-switch" type="button" onClick={() => { setPricingView("packs"); setCheckoutMessage(""); }}>See one-time search packs</button>

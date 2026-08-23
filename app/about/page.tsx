@@ -3,7 +3,7 @@ import LegalPage from "../legal/_components/LegalPage";
 
 export const metadata: Metadata = {
   title: "About PROMAI",
-  description: "What PROMAI visual-similarity search is designed to do and where its limits are.",
+  description: "What PROMAI visual-similarity search does, who operates it and where its limits are.",
 };
 
 export default function AboutPage() {
@@ -12,62 +12,64 @@ export default function AboutPage() {
       eyebrow="ABOUT"
       title="About PROMAI"
       updated="23 August 2026"
-      summary="PROMAI is being designed as a privacy-first visual-similarity tool for personal footprint checks, consent-based verification and investigating suspected fraud directed at the user."
+      summary="PROMAI is a privacy-focused visual-similarity service for personal footprint checks, consent-based searches and investigating suspected impersonation or fraud."
     >
       <section>
-        <h2>1. One face, public-web visual leads</h2>
+        <h2>1. The service</h2>
         <p>
-          PROMAI compares a user-approved face crop with images from sources that a
-          production service is lawfully permitted to search. It is intended to return
-          visual-similarity scores and links to the pages where similar images appear.
+          PROMAI compares a face crop approved by the user with images available through
+          sources that PROMAI and its index providers are permitted to process. Results
+          may include similarity scores, thumbnails and links to the public pages where
+          visually similar images appear.
         </p>
       </section>
 
       <section>
-        <h2>2. A clue, not an identity</h2>
+        <h2>2. A lead, not an identity decision</h2>
         <p>
-          PROMAI does not name a person or certify that two photographs show the same
-          individual. Lookalikes, image quality, lighting, age and editing can all affect
-          a result. Every match must be checked against independent evidence and context.
+          PROMAI does not certify that two photographs show the same person. Lookalikes,
+          image quality, lighting, age, pose and editing can affect a result. Users must
+          check every result against independent evidence and context before taking action.
         </p>
       </section>
 
       <section>
-        <h2>3. Intended uses</h2>
+        <h2>3. Permitted purposes</h2>
         <ul>
           <li>checking where your own face appears online;</li>
-          <li>running a search with the subject&apos;s informed consent;</li>
-          <li>checking suspected impersonation or fraud directed at you; and</li>
+          <li>searching with the informed consent of the person shown;</li>
+          <li>investigating suspected impersonation or fraud directed at you; or</li>
           <li>another specific search supported by a documented lawful basis.</li>
         </ul>
       </section>
 
       <section>
-        <h2>4. Where PROMAI draws the line</h2>
+        <h2>4. Prohibited purposes</h2>
         <p>
-          The service is not for stalking, harassment, doxxing, surveillance, protest
-          monitoring, identity profiling or eligibility decisions. It is not a background
-          check, a consumer report or a substitute for professional identity verification.
-          The full restrictions appear in the <a href="/legal/terms">Terms of use</a>.
+          PROMAI is not a surveillance, background-check, identity-monitoring or consumer
+          reporting service. Stalking, harassment, doxxing, protest monitoring, identity
+          profiling, bulk searching and eligibility decisions are prohibited. The complete
+          restrictions appear in the <a href="/legal/terms">Terms of use</a>.
         </p>
       </section>
 
       <section>
-        <h2>5. Privacy by design</h2>
+        <h2>5. Privacy controls</h2>
         <p>
-          The current demo does not upload a photo. Before live search is enabled, face
-          selection must happen in the browser, only the approved crop may be transmitted,
-          production biometric case data must expire within the published period, and free
-          de-indexing must be operational. See the <a href="/legal/privacy">Privacy policy</a>.
+          Face detection and framing occur in the browser. Only the user-approved face crop
+          is transmitted for a search, and biometric search-case data is deleted no later
+          than 30 days after the search. Free de-indexing is available to people whose faces
+          appear in results. See the <a href="/legal/privacy">Privacy policy</a>.
         </p>
       </section>
 
       <section>
-        <h2>6. Control over your face</h2>
+        <h2>6. Operator and contact</h2>
         <p>
-          A person will not need an account or payment to request exclusion from PROMAI
-          search results. The difference between removing an index entry and removing the
-          original webpage is explained in the <a href="/legal/removal">Removal policy</a>.
+          PROMAI is operated by Ice Bear Media Inc, a Colorado corporation, at 5142 N
+          Academy Blvd Unit 4322, Colorado Springs, CO 80918, USA. Questions, complaints
+          and rights requests may be sent to{" "}
+          <a href="mailto:support@promai.app">support@promai.app</a>.
         </p>
       </section>
     </LegalPage>

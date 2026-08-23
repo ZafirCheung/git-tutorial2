@@ -3,7 +3,7 @@ import LegalPage from "../_components/LegalPage";
 
 export const metadata: Metadata = {
   title: "Subscription Policy | PROMAI",
-  description: "PROMAI subscription renewal, cancellation and billing rules.",
+  description: "PROMAI plan pricing, automatic renewal, credits, cancellation and billing rules.",
 };
 
 export default function SubscriptionPolicyPage() {
@@ -12,96 +12,104 @@ export default function SubscriptionPolicyPage() {
       eyebrow="BILLING"
       title="Subscription policy"
       updated="23 August 2026"
-      summary="These rules will govern any recurring PROMAI plan. The current prototype does not sell a subscription or collect payment."
+      summary="This policy governs recurring PROMAI plans, automatic renewal, plan credits, cancellation and related billing."
     >
       <section>
-        <h2>1. No subscription in the current demo</h2>
+        <h2>1. Current plans</h2>
+        <p>PROMAI offers the following monthly subscriptions in US dollars:</p>
+        <ul>
+          <li><strong>Pro:</strong> US$25 per month, including 100 credits;</li>
+          <li><strong>Ultra:</strong> US$79 per month, including 500 credits.</li>
+        </ul>
         <p>
-          The current PROMAI prototype does not create accounts, sell plans or start
-          recurring billing. A subscription will not begin unless a user later selects a
-          clearly described paid plan and expressly confirms its recurring price at checkout.
+          PROMAI also offers non-recurring credit packs: 3 credits for US$3, 30 credits
+          for US$24 and 100 credits for US$69. One-time packs do not automatically renew.
+          Checkout controls if it shows a temporary discount or a different local price
+          required by law.
         </p>
       </section>
 
       <section>
-        <h2>2. Plan information and consent</h2>
-        <p>Before purchase, each recurring plan will state:</p>
-        <ul>
-          <li>the included searches, reports, limits or other paid features;</li>
-          <li>the price, currency, tax treatment and billing interval;</li>
-          <li>the first charge date and the date or frequency of later renewals;</li>
-          <li>whether unused searches or allowances carry forward or expire; and</li>
-          <li>how to cancel before the next renewal.</li>
-        </ul>
+        <h2>2. Consent and confirmation</h2>
         <p>
-          PROMAI will not treat silence, an unchecked box or use of the free prototype as
-          consent to recurring billing.
+          Before purchase, checkout identifies the plan, included credits, total price,
+          currency, taxes, monthly billing interval, first charge and automatic-renewal
+          terms. A subscription starts only after the customer expressly confirms the
+          recurring payment. The receipt records the accepted plan and charge.
         </p>
       </section>
 
       <section>
         <h2>3. Automatic renewal</h2>
         <p>
-          A paid subscription automatically renews for the billing interval accepted at
-          checkout until it is cancelled. The payment method on file will be charged at
-          the start of each renewal period. A receipt will identify PROMAI, the amount,
-          currency, plan and renewal period.
+          Pro and Ultra renew each month until cancelled. PROMAI charges the payment method
+          on file on the same calendar date as the initial purchase, or the nearest
+          available billing date. The renewal provides a new monthly credit allocation.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Credits</h2>
+        <p>
+          Subscription credits are valid only during the billing period in which they are
+          issued. Unused subscription credits expire at the end of that period and do not
+          roll over. One-time pack credits remain available according to the expiry date,
+          if any, displayed before purchase. Credits have no cash value and cannot be
+          transferred or resold.
         </p>
       </section>
 
       <section id="cancel">
-        <h2>4. Cancelling</h2>
+        <h2>5. Cancelling</h2>
         <p>
-          A subscriber may cancel at any time through the billing portal or the support
-          channel identified in the receipt. Cancellation takes effect at the end of the
-          current paid period, and no further renewal charge will be made. To avoid the next
-          charge, cancellation must be completed before the displayed renewal time.
+          Customers may cancel through the billing portal or by emailing{" "}
+          <a href="mailto:support@promai.app">support@promai.app</a>. To avoid the next
+          charge, submit cancellation at least 48 hours before the renewal date.
+          Cancellation takes effect at the end of the current paid period, access continues
+          until then and no later renewal is charged.
         </p>
         <p>
-          Cancelling a plan is different from deleting an account or a search case. Face
-          crops and result data continue to follow the deletion periods in the
-          <a href="/legal/privacy"> Privacy policy</a>, whether or not a subscription remains active.
-        </p>
-      </section>
-
-      <section>
-        <h2>5. Refunds after cancellation</h2>
-        <p>
-          Cancellation does not normally create a prorated refund for the unused portion
-          of a billing period. Duplicate charges, non-delivery, technical failures and
-          mandatory consumer remedies are handled under the
-          <a href="/legal/refunds"> Refund policy</a>.
+          Deleting the app, browser data, a search case or an account does not by itself
+          cancel a subscription. Subscription cancellation is separate from account and
+          biometric-data deletion.
         </p>
       </section>
 
       <section>
-        <h2>6. Trials and promotions</h2>
+        <h2>6. Refunds</h2>
         <p>
-          If PROMAI offers a trial or introductory price, checkout will disclose its length,
-          eligibility rules, the price charged after it ends and the deadline for avoiding
-          that charge. A trial will not convert into a paid subscription unless the user has
-          been shown those terms and has expressly accepted the recurring payment.
+          Cancellation does not normally create a prorated refund. The 30-day initial
+          unused-credit rule, duplicate charges, service failure and mandatory consumer
+          remedies are addressed in the <a href="/legal/refunds">Refund policy</a>.
         </p>
       </section>
 
       <section>
-        <h2>7. Price and plan changes</h2>
+        <h2>7. Trials, promotions and plan changes</h2>
         <p>
-          PROMAI may change a future renewal price or plan features only after giving the
-          notice required by applicable law. The notice will state the new amount and its
-          effective renewal date and will explain how to cancel. A material change will not
-          be applied retroactively to an already paid period.
+          A trial or introductory offer states its duration, eligibility, included credits,
+          renewal price and cancellation deadline before acceptance. PROMAI gives advance
+          notice of a material renewal-price change and explains how to cancel before it
+          takes effect. Changes do not apply retroactively to a paid period.
         </p>
       </section>
 
       <section>
-        <h2>8. Failed payments and plan access</h2>
+        <h2>8. Failed payments</h2>
         <p>
-          If a renewal payment fails, PROMAI or its payment provider may retry the payment
-          and notify the subscriber. Paid features may be limited after reasonable notice,
-          but a failed payment will not change the privacy and deletion protections for
-          existing search data. PROMAI may also suspend a plan for material misuse under
-          the <a href="/legal/terms">Terms of use</a>.
+          If a renewal payment fails, PROMAI or its payment provider may retry it and notify
+          the customer. Paid features may be limited until payment succeeds. A failed
+          payment does not change the privacy and deletion obligations applying to existing
+          search data.
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Contact</h2>
+        <p>
+          Billing and cancellation questions should be sent to{" "}
+          <a href="mailto:support@promai.app">support@promai.app</a>. PROMAI is operated by
+          Ice Bear Media Inc, 5142 N Academy Blvd Unit 4322, Colorado Springs, CO 80918, USA.
         </p>
       </section>
     </LegalPage>

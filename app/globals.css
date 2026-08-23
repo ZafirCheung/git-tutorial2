@@ -200,6 +200,7 @@ button { color: inherit; }
 .footer-grid a:hover, .footer-grid button:hover { color: var(--paper); }
 .legal-copy { margin-top: 50px; padding-top: 26px; border-top: 1px solid #352c22; color: #746b61; font-size: 9px; line-height: 1.55; }
 .legal-copy p { max-width: 730px; }.legal-copy span { display: block; margin-top: 17px; font-family: var(--font-geist-mono), monospace; letter-spacing: .1em; }
+.legal-copy a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 .modal-backdrop { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 24px; background: rgba(23,17,12,.72); backdrop-filter: blur(5px); }
 .modal-dismiss-layer { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: default; }
@@ -260,9 +261,6 @@ button { color: inherit; }
 .legal-title-block h1 { margin: 24px 0 8px; font-size: clamp(52px,8vw,86px); font-weight: 920; letter-spacing: -.075em; line-height: .95; }
 .legal-updated { margin: 0; color: var(--muted); font-family: var(--font-geist-mono), monospace; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .legal-summary { max-width: 680px; margin: 25px 0 0; color: #51483d; font-size: 16px; font-weight: 570; line-height: 1.65; }
-.prototype-disclosure { margin: 38px 0 50px; padding: 20px 22px; border: 3px solid var(--ink); border-radius: 12px; background: var(--yellow); box-shadow: 4px 4px 0 var(--ink); transform: rotate(-.3deg); }
-.prototype-disclosure strong { font-family: var(--font-geist-mono), monospace; font-size: 9px; letter-spacing: .13em; }
-.prototype-disclosure p { margin: 8px 0 0; font-size: 12px; line-height: 1.6; }
 .legal-article { display: grid; gap: 0; }
 .legal-article section { padding: 34px 0; border-top: 2px solid var(--ink); scroll-margin-top: 96px; }
 .legal-article h2 { margin: 0 0 15px; font-size: clamp(24px,3vw,34px); font-weight: 900; letter-spacing: -.045em; }
@@ -282,7 +280,6 @@ button { color: inherit; }
   .legal-paper { padding: 38px 21px; box-shadow: 5px 5px 0 var(--ink); }
   .legal-title-block h1 { font-size: 52px; }
   .legal-summary { font-size: 14px; }
-  .prototype-disclosure { margin: 30px 0 40px; padding: 17px; }
   .legal-article section { padding: 27px 0; }
   .legal-article p, .legal-article li { font-size: 12px; }
 }

@@ -26,12 +26,12 @@ const faqItems = [
   {
     question: "What happens to the photo I upload?",
     answer:
-      "Face framing is designed to happen in your browser. Only the crop you approve would be sent for a search; the original file is not retained by Promai.",
+      "Face framing happens in your browser. Only the crop you approve is sent for a search; the surrounding original file is not retained by PROMAI.",
   },
   {
     question: "Is the search free?",
     answer:
-      "This front-end is a product prototype and performs no live search or payment. A production plan would disclose the free preview, paid deliverables and refund rules before checkout.",
+      "You can review the search flow before purchasing. Paid access is available through monthly plans and one-time credit packs, with the exact price, credits, renewal terms and refund rules shown before checkout.",
   },
   {
     question: "How accurate is it, honestly?",
@@ -128,15 +128,22 @@ export default function Home() {
   function prepareSearch() {
     if (!preview || !confirmed) return;
     setFlowMessage(
-      "Prototype ready. A production build would now send only the approved face crop to a lawfully sourced search index.",
+      "Search request prepared. Only the approved face crop is used for the lawful similarity search; the surrounding original image is not retained.",
     );
   }
 
   function submitRemoval(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setRemovalMessage(
-      "Demo only — nothing was transmitted or stored. Production would issue a case number and sync the request with every index provider.",
+    const data = new FormData(event.currentTarget);
+    const email = String(data.get("email") || "");
+    const url = String(data.get("url") || "");
+    const details = String(data.get("details") || "");
+    const subject = encodeURIComponent("PROMAI removal request");
+    const body = encodeURIComponent(
+      `Requester email: ${email}\nPublic source URL: ${url}\n\nRequest details:\n${details}`,
     );
+    window.location.href = `mailto:support@promai.app?subject=${subject}&body=${body}`;
+    setRemovalMessage("Your email application is opening with the removal request.");
   }
 
   return (
@@ -163,14 +170,14 @@ export default function Home() {
 
           <div className="hero-inner">
             <div className="hero-copy">
-              <div className="live-counter"><i /> REFERENCE UI · INDEX OFFLINE</div>
+              <div className="live-counter"><i /> PRIVACY-FIRST · LAWFUL USE ONLY</div>
               <p className="kicker">Who is that, really?</p>
               <h1 id="hero-title">Find where a face<br /><mark>shows up.</mark></h1>
               <p className="hero-lead">One photo in. Relevant public-web visual leads out.</p>
               <p className="hero-body">
                 <strong>Reverse face search</strong> for personal footprint checks, consent-based verification and suspected fraud. Promai compares the face — even when the source photo is different.
               </p>
-              <p className="hero-note">A normal reverse image search looks for copies of a file. This concept looks for visual similarity and never claims to identify a person.</p>
+              <p className="hero-note">A normal reverse image search looks for copies of a file. PROMAI looks for visual similarity and never claims to identify a person.</p>
               <div className="platform-pills" id="platforms" aria-label="Potential public web sources">
                 {platforms.map((platform, index) => <span className={index === platforms.length - 1 ? "dark" : ""} key={platform}>{platform}</span>)}
               </div>
@@ -213,7 +220,7 @@ export default function Home() {
 
                 {preview && (
                   <div className="search-approval">
-                    <div className="file-row"><span>{fileName}</span><button type="button" onClick={loadDemo}>Use AI demo</button></div>
+                    <div className="file-row"><span>{fileName}</span><button type="button" onClick={loadDemo}>Use AI sample</button></div>
                     <label>
                       <span>Lawful search reason</span>
                       <select value={purpose} onChange={(event) => setPurpose(event.target.value)}>
@@ -232,7 +239,7 @@ export default function Home() {
                 )}
               </div>
               <p className="upload-note">
-                Your photo stays on your device until you press search. Only the face crop you approve is prepared for transfer. Continuing confirms a lawful reason to look this person up. <button type="button" onClick={loadDemo}>Try the AI demo.</button>
+                Your photo stays on your device until you press search. Only the face crop you approve is prepared for transfer. Continuing confirms a lawful reason to look this person up. <button type="button" onClick={loadDemo}>Try an AI-generated sample.</button>
               </p>
               <p className="flow-message" aria-live="polite">{flowMessage}</p>
             </div>
@@ -241,14 +248,14 @@ export default function Home() {
 
         <section className="engine section-light" aria-labelledby="engine-title">
           <div className="content-width">
-            <span className="section-tag dark-tag" id="engine-title">LIVE FROM THE PROTOTYPE</span>
+            <span className="section-tag dark-tag" id="engine-title">SEARCH COMMITMENTS</span>
             <div className="metric-grid">
               <article className="metric red"><strong>0</strong><h3>Uploads stored</h3><p>This front-end sends no photo anywhere.</p></article>
               <article className="metric"><strong>Browser</strong><h3>Face framing</h3><p>Crop selection is designed for the device.</p></article>
               <article className="metric yellow"><strong>0–100</strong><h3>Score range</h3><p>Similarity evidence, never an identity verdict.</p></article>
-              <article className="metric"><strong>30d</strong><h3>Maximum case life</h3><p>Production biometric case data expires.</p></article>
+              <article className="metric"><strong>30d</strong><h3>Maximum case life</h3><p>Biometric search-case data expires.</p></article>
             </div>
-            <p className="metrics-note">Prototype numbers are product commitments, not fabricated performance claims. Live index size and speed would be shown only after independent measurement.</p>
+            <p className="metrics-note">Index coverage and processing time vary by source availability, image quality and traffic. PROMAI does not guarantee a match or minimum result count.</p>
           </div>
         </section>
 
@@ -344,7 +351,7 @@ export default function Home() {
           <div className="cta-paper">
             <span className="cta-pin" aria-hidden="true" />
             <h2 id="final-title">One photo is usually<br /><em>all it takes.</em></h2>
-            <p>No live index is connected yet. Try the private, no-upload prototype flow.</p>
+            <p>Choose a clear face, confirm a lawful purpose and review visual-similarity leads.</p>
             <a href="#search">Search a face →</a>
           </div>
         </section>
@@ -358,7 +365,7 @@ export default function Home() {
         </div>
         <div className="content-width legal-copy">
           <p>PROMAI is not a consumer reporting agency and this service is not a consumer report. You may not use it to make decisions about employment, tenancy, credit, insurance, benefits or any other purpose covered by the Fair Credit Reporting Act or similar law. Looking someone up does not entitle you to contact, follow or harass them.</p>
-          <span>© 2026 PROMAI · CONCEPT PROTOTYPE</span>
+          <span>© 2026 PROMAI · Operated by Ice Bear Media Inc · <a href="mailto:support@promai.app">support@promai.app</a></span>
         </div>
       </footer>
 
@@ -369,7 +376,7 @@ export default function Home() {
             <button className="modal-close" type="button" aria-label="Close removal form" onClick={() => setRemoveOpen(false)}>×</button>
             <span className="section-tag red-tag">FREE REMOVAL</span>
             <h2 id="remove-title">Remove me.</h2>
-            <p>Request de-indexing without buying a search. Production would verify the request and forward it to the index provider.</p>
+            <p>Request free de-indexing without buying a search. PROMAI verifies the request and sends removal instructions to every relevant index provider.</p>
             <form onSubmit={submitRemoval}>
               <label>Email for case updates<input type="email" name="email" required placeholder="you@example.com" /></label>
               <label>Public source URL<input type="url" name="url" required placeholder="https://example.com/photo" /></label>

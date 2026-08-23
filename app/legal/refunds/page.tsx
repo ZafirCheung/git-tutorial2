@@ -3,7 +3,7 @@ import LegalPage from "../_components/LegalPage";
 
 export const metadata: Metadata = {
   title: "Refund Policy | PROMAI",
-  description: "When a PROMAI payment may be refunded and how refund requests are handled.",
+  description: "PROMAI refund eligibility, exclusions, request process and processing times.",
 };
 
 export default function RefundPolicyPage() {
@@ -12,95 +12,95 @@ export default function RefundPolicyPage() {
       eyebrow="BILLING"
       title="Refund policy"
       updated="23 August 2026"
-      summary="This policy explains the refund rules that will apply if PROMAI introduces paid searches, reports or subscriptions. The current prototype does not accept payment."
+      summary="This policy applies to PROMAI subscriptions, one-time credit packs and other digital purchases made directly through PROMAI."
     >
       <section>
-        <h2>1. No payments in the current demo</h2>
+        <h2>1. Scope and operator</h2>
         <p>
-          PROMAI&apos;s current public prototype has no checkout and cannot charge a card.
-          No purchase, subscription or refund can presently be created through this site.
-          The rules below must be active before paid access is enabled.
+          PROMAI is operated by Ice Bear Media Inc (&quot;PROMAI&quot;, &quot;we&quot;,
+          &quot;us&quot;). This policy forms part of the <a href="/legal/terms">Terms of
+          use</a>. It does not apply to purchases made through a third-party app store,
+          whose refund process controls that purchase.
         </p>
       </section>
 
       <section>
-        <h2>2. What checkout must show</h2>
-        <p>Before a user pays, checkout will clearly display:</p>
-        <ul>
-          <li>the product or plan being purchased and what it includes;</li>
-          <li>the total price, billing currency and applicable taxes;</li>
-          <li>whether the charge is one-time or automatically recurring;</li>
-          <li>when the paid feature or report becomes available; and</li>
-          <li>any plan-specific refund, trial or promotional condition.</li>
-        </ul>
+        <h2>2. Digital service and credit delivery</h2>
         <p>
-          A plan-specific term shown and accepted at checkout forms part of this policy.
-          It cannot remove a consumer right that applicable law makes mandatory.
+          PROMAI sells access to digital face-similarity searches, reports and related
+          features through recurring plans and one-time credit packs. The product, price,
+          currency, tax, credit quantity, billing frequency and any promotion are displayed
+          before payment and confirmed in the receipt.
+        </p>
+        <p>
+          A search credit is consumed when a search request is accepted for processing.
+          Search coverage, match count and similarity scores vary. PROMAI does not guarantee
+          that a search will produce a match or identify a person.
         </p>
       </section>
 
       <section>
-        <h2>3. When a refund may be approved</h2>
-        <p>PROMAI will review a refund request where:</p>
+        <h2>3. Thirty-day unused-credit refund</h2>
+        <p>
+          A customer may request a refund within 30 days after the initial subscription
+          purchase if no paid subscription credit has been used. Free or promotional
+          credits used before the first paid credit do not by themselves disqualify the
+          customer. Renewal periods and partially used credit packs are normally
+          non-refundable, subject to mandatory law.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Billing errors and service failure</h2>
+        <p>PROMAI will also review a full or partial refund where:</p>
         <ul>
           <li>the same purchase was charged more than once;</li>
           <li>the amount charged differs from the amount accepted at checkout;</li>
-          <li>a paid feature was not delivered and PROMAI cannot restore it within a reasonable time;</li>
-          <li>a confirmed technical failure prevented use of the purchased access; or</li>
-          <li>applicable consumer law requires a refund, cancellation right or other remedy.</li>
+          <li>paid credits were not added to the customer&apos;s balance;</li>
+          <li>a confirmed PROMAI failure prevented delivery and could not be corrected within a reasonable time; or</li>
+          <li>applicable consumer law requires a refund or other remedy.</li>
         </ul>
       </section>
 
       <section>
-        <h2>4. Digital results and non-refundable situations</h2>
+        <h2>5. Non-refundable situations</h2>
         <p>
-          A completed search or an opened source report is a digital service that may be
-          delivered immediately. Subject to mandatory law, it is normally not refundable
-          merely because the search returns few or no matches, a source has disappeared,
-          a similarity score is lower than expected, or the user later decides the lead is
-          not useful. PROMAI does not guarantee web coverage, a match or an identity result.
+          Subject to mandatory law, consumed credits and completed searches are not
+          refundable because a search returns few or no matches, a source is unavailable,
+          a score is lower than expected or the customer decides that a result is not
+          useful. Subscription cancellation stops future renewal but does not create a
+          prorated refund for the current paid period.
         </p>
         <p>
-          Charges are also normally non-refundable when access is suspended or terminated
-          for stalking, harassment, doxxing, automation, database building, an unlawful
-          search or another material violation of the <a href="/legal/terms">Terms of use</a>.
-          This does not limit rights that cannot lawfully be excluded.
-        </p>
-      </section>
-
-      <section>
-        <h2>5. Subscription cancellations</h2>
-        <p>
-          Cancelling a subscription stops future renewal charges but does not automatically
-          refund the current billing period. Access ordinarily continues until the paid
-          period ends. See the <a href="/legal/subscriptions">Subscription policy</a> for
-          renewal, cancellation and plan-change rules.
+          Credits or fees are not refunded when access is restricted or terminated for
+          stalking, harassment, doxxing, automation, database building, an unlawful search,
+          payment abuse or another material violation of the Terms of use.
         </p>
       </section>
 
       <section id="request">
-        <h2>6. How to request a refund</h2>
+        <h2>6. Requesting a refund</h2>
         <p>
-          When payments launch, PROMAI will provide a functioning billing-support email or
-          form on this page, in the purchase receipt and at checkout. A request should be
-          made within 14 days after the charge, unless a longer period is required by law,
-          and should include the receipt or transaction reference, purchase date and a
-          short explanation. Never send a full card number or security code.
+          Email <a href="mailto:support@promai.app">support@promai.app</a> from the address
+          associated with the purchase. Include the receipt or transaction reference,
+          purchase date and a short explanation. Do not send a full card number or card
+          security code.
         </p>
         <p>
-          PROMAI will acknowledge the request and normally decide it within five business
-          days. An approved refund will be returned to the original payment method. The
-          payment provider or bank may then need additional time to post the funds.
+          PROMAI normally acknowledges billing requests within 24 hours and decides them
+          within five business days. Approved refunds are returned to the original payment
+          method. The payment provider or bank may require an additional 5–10 business days
+          to display the credit.
         </p>
       </section>
 
       <section>
-        <h2>7. Disputes and unauthorised charges</h2>
+        <h2>7. Mandatory rights</h2>
         <p>
-          Report an unrecognised charge promptly through the support channel shown on the
-          receipt. PROMAI will investigate duplicate, incorrect and suspected unauthorised
-          transactions. Users retain the right to contact their card issuer, but contacting
-          PROMAI first may allow a billing error to be corrected more quickly.
+          Nothing in this policy limits a statutory cooling-off period, remedy for
+          non-conforming digital content or other consumer right that cannot legally be
+          waived. Where immediate digital performance requires consent or acknowledgment,
+          PROMAI obtains it at checkout.
         </p>
       </section>
     </LegalPage>

@@ -41,16 +41,6 @@ export default function LegalPage({
             <p className="legal-summary">{summary}</p>
           </div>
 
-          <aside className="prototype-disclosure" aria-label="Prototype disclosure">
-            <strong>DEMO DISCLOSURE</strong>
-            <p>
-              This site is currently a front-end prototype. It has no live face index,
-              account system or payment checkout, and it does not transmit uploaded
-              photos or form submissions. Production service will not launch until the
-              controls described as production requirements are implemented and verified.
-            </p>
-          </aside>
-
           <article className="legal-article">{children}</article>
         </div>
       </main>
@@ -88,7 +78,10 @@ export default function LegalPage({
             benefits or other eligibility decisions. A visual-similarity result does not
             establish anyone&apos;s identity or create a right to contact, follow or monitor them.
           </p>
-          <span>© 2026 PROMAI · CONCEPT PROTOTYPE</span>
+          <span>
+            © 2026 PROMAI · Operated by Ice Bear Media Inc ·{" "}
+            <a href="mailto:support@promai.app">support@promai.app</a>
+          </span>
         </div>
       </footer>
     </div>

@@ -1,18 +1,28 @@
 "use client";
 
 import { ChangeEvent, DragEvent, FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import {
+  FaFacebookF,
+  FaHeart,
+  FaInstagram,
+  FaLinkedinIn,
+  FaPinterestP,
+  FaRedditAlien,
+  FaTiktok,
+  FaXTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
 
 const platforms = [
-  "◎ Instagram",
-  "♪ TikTok",
-  "𝕏 X",
-  "● Facebook",
-  "in LinkedIn",
-  "▶ YouTube",
-  "P Pinterest",
-  "● Reddit",
-  "◉ Dating sites",
-  "+ the open web",
+  { label: "Instagram", Icon: FaInstagram },
+  { label: "TikTok", Icon: FaTiktok },
+  { label: "X", Icon: FaXTwitter },
+  { label: "Facebook", Icon: FaFacebookF },
+  { label: "LinkedIn", Icon: FaLinkedinIn },
+  { label: "YouTube", Icon: FaYoutube },
+  { label: "Pinterest", Icon: FaPinterestP },
+  { label: "Reddit", Icon: FaRedditAlien },
+  { label: "Dating sites", Icon: FaHeart },
 ];
 
 const faceCards = ["p1", "p2", "p3", "p4", "p2", "p4", "p1", "p3", "p4", "p2"];
@@ -316,7 +326,10 @@ export default function Home() {
               </p>
               <p className="hero-note">A normal reverse image search looks for copies of a file. PROMAI looks for visual similarity and never claims to identify a person.</p>
               <div className="platform-pills" id="platforms" aria-label="Potential public web sources">
-                {platforms.map((platform, index) => <span className={index === platforms.length - 1 ? "dark" : ""} key={platform}>{platform}</span>)}
+                {platforms.map(({ label, Icon }) => (
+                  <span key={label}><Icon aria-hidden="true" />{label}</span>
+                ))}
+                <span className="dark"><b className="platform-plus" aria-hidden="true">+</b>the open web</span>
               </div>
               <dl className="hero-stats">
                 <div><dt>~25s</dt><dd>target sweep</dd></div>

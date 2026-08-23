@@ -91,6 +91,15 @@ export default function Home() {
     };
   }, [preview]);
 
+  useEffect(() => {
+    function openRemovalFromHash() {
+      if (window.location.hash === "#remove-me") setRemoveOpen(true);
+    }
+    openRemovalFromHash();
+    window.addEventListener("hashchange", openRemovalFromHash);
+    return () => window.removeEventListener("hashchange", openRemovalFromHash);
+  }, []);
+
   function chooseFile(file?: File) {
     if (!file || !file.type.startsWith("image/")) return;
     if (preview?.startsWith("blob:")) URL.revokeObjectURL(preview);
@@ -126,7 +135,7 @@ export default function Home() {
   function submitRemoval(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setRemovalMessage(
-      "Request captured in this prototype. Production would issue a case number and sync the removal with every index provider.",
+      "Demo only — nothing was transmitted or stored. Production would issue a case number and sync the request with every index provider.",
     );
   }
 
@@ -345,7 +354,7 @@ export default function Home() {
         <div className="content-width footer-grid">
           <div><a className="brand footer-brand" href="#top"><span className="brand-face">⌖</span><span>PRO</span><strong>MAI</strong></a><p>A face is a clue. Never a verdict.</p></div>
           <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><a href="#faq">FAQ</a></div>
-          <div><h3>SMALL PRINT</h3><a href="#top">About Promai</a><a href="#top">Terms of use</a><a href="#top">Privacy</a><button type="button" onClick={() => setRemoveOpen(true)}>Remove my photos</button></div>
+          <div><h3>SMALL PRINT</h3><a href="#top">About PROMAI</a><a href="/legal/terms">Terms of use</a><a href="/legal/privacy">Privacy</a><a href="/legal/removal">Removal policy</a><button type="button" onClick={() => setRemoveOpen(true)}>Remove my photos</button></div>
         </div>
         <div className="content-width legal-copy">
           <p>Promai is not a consumer reporting agency and this service is not a consumer report. You may not use it to make decisions about employment, tenancy, credit, insurance, benefits or any other purpose covered by the Fair Credit Reporting Act or similar law. Looking someone up does not entitle you to contact, follow or harass them.</p>
@@ -354,8 +363,9 @@ export default function Home() {
       </footer>
 
       {removeOpen && (
-        <div className="modal-backdrop" role="presentation" onMouseDown={() => setRemoveOpen(false)}>
-          <section className="remove-modal" role="dialog" aria-modal="true" aria-labelledby="remove-title" onMouseDown={(event) => event.stopPropagation()}>
+        <div className="modal-backdrop">
+          <button className="modal-dismiss-layer" type="button" aria-label="Close removal form" onClick={() => setRemoveOpen(false)} />
+          <section className="remove-modal" role="dialog" aria-modal="true" aria-labelledby="remove-title">
             <button className="modal-close" type="button" aria-label="Close removal form" onClick={() => setRemoveOpen(false)}>×</button>
             <span className="section-tag red-tag">FREE REMOVAL</span>
             <h2 id="remove-title">Remove me.</h2>

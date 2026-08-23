@@ -98,7 +98,22 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>8. Enforcement</h2>
+        <h2>8. Paid access, subscriptions and refunds</h2>
+        <p>
+          The current prototype does not accept payment. Before paid access is enabled,
+          checkout will identify the product or plan, price, currency, taxes, deliverable,
+          billing interval and whether a payment renews automatically. A recurring plan
+          will begin only after the user expressly accepts those terms.
+        </p>
+        <p>
+          Future billing will be governed by the <a href="/legal/refunds">Refund policy</a>
+          and <a href="/legal/subscriptions">Subscription policy</a>, together with any
+          plan-specific term clearly displayed at checkout.
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Enforcement</h2>
         <p>
           PROMAI may rate-limit, suspend or permanently block access when a search appears
           unlawful, automated, deceptive or harmful. Where paid access is later offered,
@@ -108,7 +123,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>9. Availability and changes</h2>
+        <h2>10. Availability and changes</h2>
         <p>
           Search coverage can change when source pages disappear or an approved index
           provider updates its data. PROMAI does not promise complete web coverage,
@@ -118,7 +133,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>10. Disclaimer and responsibility</h2>
+        <h2>11. Disclaimer and responsibility</h2>
         <p>
           To the extent permitted by law, the service is provided without a guarantee that
           any result is complete, accurate or suitable for a particular purpose. Nothing

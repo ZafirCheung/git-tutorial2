@@ -66,7 +66,9 @@ export default function PrivacyPage() {
           The current demo has no account system or payment checkout. If either feature is
           introduced, the policy will identify the account and payment providers before
           data is collected. Complete card details will be entered directly with the
-          payment processor and will not pass through PROMAI&apos;s servers.
+          payment processor and will not pass through PROMAI&apos;s servers. Purchase and
+          renewal rules will also be published in the <a href="/legal/refunds">Refund
+          policy</a> and <a href="/legal/subscriptions">Subscription policy</a>.
         </p>
       </section>
 

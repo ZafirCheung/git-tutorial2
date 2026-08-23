@@ -76,6 +76,8 @@ export default function LegalPage({
             <a href="/about">About PROMAI</a>
             <a href="/legal/terms">Terms of use</a>
             <a href="/legal/privacy">Privacy</a>
+            <a href="/legal/refunds">Refund policy</a>
+            <a href="/legal/subscriptions">Subscription policy</a>
             <a href="/legal/removal#request">Remove my photos</a>
           </div>
         </div>

@@ -16,16 +16,24 @@ export default function SubscriptionPolicyPage() {
     >
       <section>
         <h2>1. Current plans</h2>
-        <p>PROMAI offers the following monthly subscriptions in US dollars:</p>
+        <p>PROMAI offers the following recurring plans in US dollars:</p>
         <ul>
-          <li><strong>Pro:</strong> US$25 per month, including 100 credits;</li>
-          <li><strong>Ultra:</strong> US$79 per month, including 500 credits.</li>
+          <li>
+            <strong>Weekly:</strong> US$12.99 per week, including five face searches
+            during each weekly billing period; and
+          </li>
+          <li>
+            <strong>Unlimited Annual:</strong> US$79.99 per year, advertised as unlimited
+            subject to a disclosed fair-use allowance of 250 searches during each annual
+            billing period.
+          </li>
         </ul>
         <p>
-          PROMAI also offers non-recurring credit packs: 3 credits for US$3, 30 credits
-          for US$24 and 100 credits for US$69. One-time packs do not automatically renew.
-          Checkout controls if it shows a temporary discount or a different local price
-          required by law.
+          PROMAI also offers non-recurring packs: one search for US$4.99, five searches
+          for US$17.99, ten searches for US$29.99 and twenty searches for US$47.99.
+          One-time packs do not automatically renew and unused searches do not expire.
+          Checkout controls if it shows a temporary discount, tax or different local
+          price required by law.
         </p>
       </section>
 
@@ -33,7 +41,7 @@ export default function SubscriptionPolicyPage() {
         <h2>2. Consent and confirmation</h2>
         <p>
           Before purchase, checkout identifies the plan, included credits, total price,
-          currency, taxes, monthly billing interval, first charge and automatic-renewal
+          currency, taxes, weekly or annual billing interval, first charge and automatic-renewal
           terms. A subscription starts only after the customer expressly confirms the
           recurring payment. The receipt records the accepted plan and charge.
         </p>
@@ -42,20 +50,24 @@ export default function SubscriptionPolicyPage() {
       <section>
         <h2>3. Automatic renewal</h2>
         <p>
-          Pro and Ultra renew each month until cancelled. PROMAI charges the payment method
-          on file on the same calendar date as the initial purchase, or the nearest
-          available billing date. The renewal provides a new monthly credit allocation.
+          Weekly renews every week and Unlimited Annual renews every year until cancelled.
+          PROMAI charges the payment method on file on the applicable renewal date. A
+          successful Weekly renewal provides a new five-search weekly allocation. A
+          successful Unlimited Annual renewal begins a new annual fair-use period.
         </p>
       </section>
 
       <section>
         <h2>4. Credits</h2>
         <p>
-          Subscription credits are valid only during the billing period in which they are
-          issued. Unused subscription credits expire at the end of that period and do not
-          roll over. One-time pack credits remain available according to the expiry date,
-          if any, displayed before purchase. Credits have no cash value and cannot be
-          transferred or resold.
+          Weekly searches are valid only during the weekly billing period in which they are
+          issued. Unused Weekly searches expire at the end of that period and do not roll
+          over. Unlimited Annual is subject to reasonable anti-abuse controls and the
+          disclosed limit of 250 searches per annual term. Unused one-time pack searches
+          do not expire, but remain subject to account availability, these terms and
+          continued operation of the service. Searches have no cash value and cannot be
+          transferred or resold. Source links already unlocked remain associated with the
+          relevant report while that report is available under PROMAI&apos;s retention rules.
         </p>
       </section>
 

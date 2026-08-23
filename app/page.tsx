@@ -17,6 +17,44 @@ const platforms = [
 
 const faceCards = ["p1", "p2", "p3", "p4", "p2", "p4", "p1", "p3", "p4", "p2"];
 
+const subscriptionPlans = [
+  {
+    badge: "Most popular",
+    name: "Weekly",
+    price: "$12.99",
+    interval: "/week",
+    summary: "5 searches per week",
+    features: [
+      "5 face searches every week",
+      "Every match with its source link",
+      "Confidence score on every result",
+      "Cancel anytime",
+    ],
+  },
+  {
+    badge: "Best value",
+    name: "Unlimited Annual",
+    price: "$79.99",
+    interval: "/year",
+    summary: "$6.67 a month, billed yearly",
+    savings: "Save 88%",
+    features: [
+      "Unlimited face searches",
+      "Every match with its source link",
+      "Confidence score on every result",
+      "Priority queue on the index",
+      "Fair use: 250 searches a year",
+    ],
+  },
+];
+
+const oneTimePacks = [
+  { searches: "1 search", price: "$4.99", perSearch: "$4.99 a search" },
+  { searches: "5 searches", price: "$17.99", perSearch: "$3.60 a search", savings: "Save 28%" },
+  { searches: "10 searches", price: "$29.99", perSearch: "$3.00 a search", savings: "Save 40%", badge: "Most popular" },
+  { searches: "20 searches", price: "$47.99", perSearch: "$2.40 a search", savings: "Save 52%" },
+];
+
 const faqItems = [
   {
     question: "What kind of photo actually works?",
@@ -31,7 +69,7 @@ const faqItems = [
   {
     question: "Is the search free?",
     answer:
-      "You can review the search flow before purchasing. Paid access is available through monthly plans and one-time credit packs, with the exact price, credits, renewal terms and refund rules shown before checkout.",
+      "The index search and matched photographs are free to review. Opening the exact profile or source page requires a paid weekly or annual plan, or a one-time search pack. Every price and renewal term is shown before checkout.",
   },
   {
     question: "How accurate is it, honestly?",
@@ -157,6 +195,7 @@ export default function Home() {
           <a href="#platforms">Platforms</a>
           <a href="#method">How it works</a>
           <a href="#faq">FAQ</a>
+          <a href="#pricing">Price</a>
           <button type="button" onClick={() => setRemoveOpen(true)}>Remove me</button>
         </nav>
         <a className="header-cta" href="#search">Search a face</a>
@@ -332,6 +371,78 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="pricing" id="pricing" aria-labelledby="pricing-title">
+          <div className="content-width">
+            <div className="pricing-heading">
+              <span className="section-tag yellow-tag">PRICE</span>
+              <h2 id="pricing-title">Search free.<br />Pay to reveal sources.</h2>
+              <p>
+                Review real, unblurred match photographs at no charge. A paid plan unlocks
+                the exact profile and source-page links behind every match.
+              </p>
+            </div>
+
+            <div className="pricing-group" aria-labelledby="subscription-title">
+              <div className="pricing-group-heading">
+                <div>
+                  <span>RECURRING PLANS</span>
+                  <h3 id="subscription-title">Subscribe and keep searching.</h3>
+                </div>
+                <p>Subscriptions renew until cancelled. Unlocked reports stay yours.</p>
+              </div>
+              <div className="subscription-grid">
+                {subscriptionPlans.map((plan) => (
+                  <article className={`price-card price-card--subscription ${plan.name === "Unlimited Annual" ? "price-card--featured" : ""}`} key={plan.name}>
+                    <span className="price-badge">{plan.badge}</span>
+                    <p className="price-name">{plan.name}</p>
+                    <div className="price-line"><strong>{plan.price}</strong><span>{plan.interval}</span></div>
+                    {plan.savings ? <p className="price-savings">{plan.savings}</p> : null}
+                    <p className="price-summary">{plan.summary}</p>
+                    <ul>
+                      {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
+                    </ul>
+                    <a href="#search">Choose {plan.name} →</a>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="pricing-group pricing-group--packs" aria-labelledby="packs-title">
+              <div className="pricing-group-heading">
+                <div>
+                  <span>NO SUBSCRIPTION</span>
+                  <h3 id="packs-title">Buy the searches outright.</h3>
+                </div>
+                <p>Charged once. Nothing renews. Unused searches do not expire.</p>
+              </div>
+              <div className="pack-grid">
+                {oneTimePacks.map((pack) => (
+                  <article className={`price-card price-card--pack ${pack.badge ? "price-card--popular" : ""}`} key={pack.searches}>
+                    {pack.badge ? <span className="price-badge">{pack.badge}</span> : null}
+                    <p className="price-name">{pack.searches}</p>
+                    <div className="price-line"><strong>{pack.price}</strong></div>
+                    {pack.savings ? <p className="price-savings">{pack.savings}</p> : null}
+                    <p className="price-summary">{pack.perSearch}</p>
+                    <ul>
+                      <li>{pack.searches.replace("search", "full face search")}</li>
+                      <li>Every match with its source link</li>
+                      <li>Searches never expire</li>
+                    </ul>
+                    <a href="#search">Choose {pack.searches} →</a>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <p className="pricing-legal">
+              Prices are in US dollars and exclude taxes that may apply. The annual plan is
+              marketed as unlimited subject to a disclosed fair-use allowance of 250 searches
+              per annual term. See the <a href="/legal/subscriptions">Subscription policy</a> and
+              <a href="/legal/refunds"> Refund policy</a> before purchase.
+            </p>
+          </div>
+        </section>
+
         <section className="faq section-light" id="faq" aria-labelledby="faq-title">
           <div className="content-narrow faq-inner">
             <span className="section-tag yellow-tag">INTERROGATION ROOM</span>
@@ -360,7 +471,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="content-width footer-grid">
           <div><a className="brand footer-brand" href="#top"><span className="brand-face">⌖</span><span>PRO</span><strong>MAI</strong></a><p>A face is a clue. Never a verdict.</p></div>
-          <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><a href="#faq">FAQ</a></div>
+          <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><a href="#pricing">Price</a><a href="#faq">FAQ</a></div>
           <div><h3>SMALL PRINT</h3><a href="/about">About PROMAI</a><a href="/legal/terms">Terms of use</a><a href="/legal/privacy">Privacy</a><a href="/legal/refunds">Refund policy</a><a href="/legal/subscriptions">Subscription policy</a><a href="/legal/removal#request">Remove my photos</a></div>
         </div>
         <div className="content-width legal-copy">

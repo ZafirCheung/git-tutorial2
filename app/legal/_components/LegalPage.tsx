@@ -24,6 +24,7 @@ export default function LegalPage({
           <span>PRO</span><strong>MAI</strong>
         </a>
         <nav aria-label="Legal navigation">
+          <a href="/#pricing">Price</a>
           <a href="/about">About</a>
           <a href="/legal/terms">Terms</a>
           <a href="/legal/privacy">Privacy</a>
@@ -59,6 +60,7 @@ export default function LegalPage({
             <a href="/#search">Search a face</a>
             <a href="/#method">How it works</a>
             <a href="/#scores">How scores work</a>
+            <a href="/#pricing">Price</a>
             <a href="/#faq">FAQ</a>
           </div>
           <div>

@@ -55,6 +55,8 @@ const oneTimePacks = [
   { searches: "20 searches", price: "$47.99", perSearch: "$2.40 a search", savings: "Save 52%" },
 ];
 
+type PricingView = "subscriptions" | "packs" | "offer";
+
 const faqItems = [
   {
     question: "What kind of photo actually works?",
@@ -111,6 +113,15 @@ export default function Home() {
   const [flowMessage, setFlowMessage] = useState("");
   const [removeOpen, setRemoveOpen] = useState(false);
   const [removalMessage, setRemovalMessage] = useState("");
+  const [pricingOpen, setPricingOpen] = useState(false);
+  const [pricingView, setPricingView] = useState<PricingView>("subscriptions");
+  const [selectedSubscription, setSelectedSubscription] = useState("Weekly");
+  const [selectedPack, setSelectedPack] = useState("1 search");
+  const [checkoutMessage, setCheckoutMessage] = useState("");
+
+  const activeSubscription =
+    subscriptionPlans.find((plan) => plan.name === selectedSubscription) ?? subscriptionPlans[0];
+  const activePack = oneTimePacks.find((pack) => pack.searches === selectedPack) ?? oneTimePacks[0];
 
   useEffect(() => {
     function handlePaste(event: ClipboardEvent) {
@@ -128,6 +139,22 @@ export default function Home() {
       if (preview?.startsWith("blob:")) URL.revokeObjectURL(preview);
     };
   }, [preview]);
+
+  useEffect(() => {
+    if (!pricingOpen) return;
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setPricingOpen(false);
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [pricingOpen]);
 
   useEffect(() => {
     function openRemovalFromHash() {
@@ -170,6 +197,20 @@ export default function Home() {
     );
   }
 
+  function openPricing(view: PricingView = "subscriptions", selection?: string) {
+    setPricingView(view);
+    if (view === "subscriptions" && selection) setSelectedSubscription(selection);
+    if (view === "packs" && selection) setSelectedPack(selection);
+    setCheckoutMessage("");
+    setPricingOpen(true);
+  }
+
+  function previewCheckout() {
+    setCheckoutMessage(
+      "Checkout is not connected in this front-end demo. The selected plan, total price and renewal terms will be confirmed before payment.",
+    );
+  }
+
   function submitRemoval(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -195,7 +236,7 @@ export default function Home() {
           <a href="#platforms">Platforms</a>
           <a href="#method">How it works</a>
           <a href="#faq">FAQ</a>
-          <a href="#pricing">Price</a>
+          <button type="button" onClick={() => openPricing()}>Price</button>
           <button type="button" onClick={() => setRemoveOpen(true)}>Remove me</button>
         </nav>
         <a className="header-cta" href="#search">Search a face</a>
@@ -380,6 +421,9 @@ export default function Home() {
                 Review real, unblurred match photographs at no charge. A paid plan unlocks
                 the exact profile and source-page links behind every match.
               </p>
+              <button className="pricing-launch" type="button" onClick={() => openPricing()}>
+                Compare subscriptions &amp; one-time packs →
+              </button>
             </div>
 
             <div className="pricing-group" aria-labelledby="subscription-title">
@@ -401,7 +445,9 @@ export default function Home() {
                     <ul>
                       {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
                     </ul>
-                    <a href="#search">Choose {plan.name} →</a>
+                    <button className="price-choice-button" type="button" onClick={() => openPricing("subscriptions", plan.name)}>
+                      Choose {plan.name} →
+                    </button>
                   </article>
                 ))}
               </div>
@@ -428,7 +474,9 @@ export default function Home() {
                       <li>Every match with its source link</li>
                       <li>Searches never expire</li>
                     </ul>
-                    <a href="#search">Choose {pack.searches} →</a>
+                    <button className="price-choice-button" type="button" onClick={() => openPricing("packs", pack.searches)}>
+                      Choose {pack.searches} →
+                    </button>
                   </article>
                 ))}
               </div>
@@ -471,7 +519,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="content-width footer-grid">
           <div><a className="brand footer-brand" href="#top"><span className="brand-face">⌖</span><span>PRO</span><strong>MAI</strong></a><p>A face is a clue. Never a verdict.</p></div>
-          <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><a href="#pricing">Price</a><a href="#faq">FAQ</a></div>
+          <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><button type="button" onClick={() => openPricing()}>Price</button><a href="#faq">FAQ</a></div>
           <div><h3>SMALL PRINT</h3><a href="/about">About PROMAI</a><a href="/legal/terms">Terms of use</a><a href="/legal/privacy">Privacy</a><a href="/legal/refunds">Refund policy</a><a href="/legal/subscriptions">Subscription policy</a><a href="/legal/removal#request">Remove my photos</a></div>
         </div>
         <div className="content-width legal-copy">
@@ -479,6 +527,112 @@ export default function Home() {
           <span>© 2026 PROMAI · Operated by Ice Bear Media Inc · <a href="mailto:support@promai.app">support@promai.app</a></span>
         </div>
       </footer>
+
+      {pricingOpen && (
+        <div className="modal-backdrop pricing-backdrop">
+          <button className="modal-dismiss-layer" type="button" aria-label="Close pricing" onClick={() => setPricingOpen(false)} />
+          <section className="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+            <span className="checkout-grab" aria-hidden="true" />
+            <header className="checkout-modal-header">
+              <div>
+                <span className="checkout-eyebrow">
+                  {pricingView === "subscriptions" ? "SOURCE PAGES LOCKED" : pricingView === "packs" ? "NO SUBSCRIPTION" : "ELIGIBLE OFFER"}
+                </span>
+                <h2 id="checkout-title">
+                  {pricingView === "subscriptions" ? "See who posted every match." : pricingView === "packs" ? "Buy the searches outright." : "One face, one price."}
+                </h2>
+              </div>
+              <button className="checkout-close" type="button" aria-label="Close pricing" onClick={() => setPricingOpen(false)}>×</button>
+            </header>
+
+            <div className="checkout-modal-body">
+              <p className="checkout-intro">
+                The match photographs are free to review. A paid option reveals the exact
+                public source page behind every match in the purchased search report.
+              </p>
+
+              {pricingView === "subscriptions" && (
+                <div className="checkout-plan-list" role="radiogroup" aria-label="Subscription plans">
+                  {subscriptionPlans.map((plan) => (
+                    <button
+                      className={`checkout-plan ${selectedSubscription === plan.name ? "checkout-plan--selected" : ""}`}
+                      type="button"
+                      role="radio"
+                      aria-checked={selectedSubscription === plan.name}
+                      onClick={() => { setSelectedSubscription(plan.name); setCheckoutMessage(""); }}
+                      key={plan.name}
+                    >
+                      <span className="checkout-radio" aria-hidden="true" />
+                      <span className="checkout-plan-copy">
+                        <span className="checkout-plan-title">{plan.name}<em>{plan.badge}</em></span>
+                        <small>{plan.name === "Weekly" ? plan.summary : "Fair use: 250 searches per year"}</small>
+                      </span>
+                      <span className="checkout-plan-price"><strong>{plan.price}</strong><small>{plan.interval}</small></span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {pricingView === "packs" && (
+                <div className="checkout-plan-list" role="radiogroup" aria-label="One-time search packs">
+                  {oneTimePacks.map((pack) => (
+                    <button
+                      className={`checkout-plan ${selectedPack === pack.searches ? "checkout-plan--selected" : ""}`}
+                      type="button"
+                      role="radio"
+                      aria-checked={selectedPack === pack.searches}
+                      onClick={() => { setSelectedPack(pack.searches); setCheckoutMessage(""); }}
+                      key={pack.searches}
+                    >
+                      <span className="checkout-radio" aria-hidden="true" />
+                      <span className="checkout-plan-copy">
+                        <span className="checkout-plan-title">{pack.searches}{pack.badge ? <em>{pack.badge}</em> : null}</span>
+                        <small>{pack.perSearch} · Never expires</small>
+                      </span>
+                      <span className="checkout-plan-price"><strong>{pack.price}</strong></span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {pricingView === "offer" && (
+                <div className="checkout-offer">
+                  <p>Offer availability is verified at checkout. No subscription and no automatic renewal.</p>
+                  <button className="checkout-plan checkout-plan--selected" type="button" aria-pressed="true">
+                    <span className="checkout-radio" aria-hidden="true" />
+                    <span className="checkout-plan-copy">
+                      <span className="checkout-plan-title">Just one search<em>Eligible offer</em></span>
+                      <small>1 source-enabled face search</small>
+                    </span>
+                    <span className="checkout-plan-price"><strong>$2.99</strong></span>
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <footer className="checkout-modal-footer">
+              <button className="checkout-primary" type="button" onClick={previewCheckout}>
+                Reveal sources · {pricingView === "subscriptions" ? `${activeSubscription.price}${activeSubscription.interval}` : pricingView === "packs" ? activePack.price : "$2.99"} →
+              </button>
+              {pricingView === "subscriptions" ? (
+                <button className="checkout-switch" type="button" onClick={() => { setPricingView("packs"); setCheckoutMessage(""); }}>See one-time search packs</button>
+              ) : pricingView === "packs" ? (
+                <div className="checkout-switches">
+                  <button className="checkout-switch" type="button" onClick={() => { setPricingView("subscriptions"); setCheckoutMessage(""); }}>See subscription plans</button>
+                  <button className="checkout-switch checkout-switch--offer" type="button" onClick={() => { setPricingView("offer"); setCheckoutMessage(""); }}>Check $2.99 offer eligibility</button>
+                </div>
+              ) : (
+                <button className="checkout-switch" type="button" onClick={() => { setPricingView("packs"); setCheckoutMessage(""); }}>See all one-time packs</button>
+              )}
+              <p className="checkout-message" aria-live="polite">{checkoutMessage}</p>
+              <p className="checkout-fine-print">
+                Prices are in USD before applicable tax. Recurring plans renew until cancelled.
+                One-time packs and eligible offers do not renew. See our <a href="/legal/subscriptions">billing terms</a> and <a href="/legal/refunds">refund policy</a>.
+              </p>
+            </footer>
+          </section>
+        </div>
+      )}
 
       {removeOpen && (
         <div className="modal-backdrop">

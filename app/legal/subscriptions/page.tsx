@@ -32,8 +32,11 @@ export default function SubscriptionPolicyPage() {
           PROMAI also offers non-recurring packs: one search for US$4.99, five searches
           for US$17.99, ten searches for US$29.99 and twenty searches for US$47.99.
           One-time packs do not automatically renew and unused searches do not expire.
-          Checkout controls if it shows a temporary discount, tax or different local
-          price required by law.
+          Eligible customers may also be shown a promotional one-search price of US$2.99.
+          That promotional purchase is non-recurring, is limited to the eligibility and
+          availability stated at checkout, and does not convert into a subscription.
+          Checkout controls if it shows a temporary discount, tax or different local price
+          required by law.
         </p>
       </section>
 

@@ -294,6 +294,7 @@ export default function Home() {
           <a href="#faq">FAQ</a>
           <button type="button" onClick={() => openPricing()}>Price</button>
           <button type="button" onClick={() => setRemoveOpen(true)}>Remove me</button>
+          <a href="/account">Account</a>
         </nav>
         <a className="header-cta" href="#search">Search a face</a>
       </header>
@@ -575,7 +576,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="content-width footer-grid">
           <div><a className="brand footer-brand" href="#top"><span className="brand-face">⌖</span><span>PRO</span><strong>MAI</strong></a><p>A face is a clue. Never a verdict.</p></div>
-          <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><button type="button" onClick={() => openPricing()}>Price</button><a href="#faq">FAQ</a></div>
+          <div><h3>THE GOODS</h3><a href="#search">Search a face</a><a href="#platforms">Search sources</a><a href="#method">How it works</a><a href="#scores">How scores work</a><button type="button" onClick={() => openPricing()}>Price</button><a href="/account">Account</a><a href="#faq">FAQ</a></div>
           <div><h3>SMALL PRINT</h3><a href="/about">About PROMAI</a><a href="/legal/terms">Terms of use</a><a href="/legal/privacy">Privacy</a><a href="/legal/refunds">Refund policy</a><a href="/legal/subscriptions">Subscription policy</a><a href="/legal/removal#request">Remove my photos</a></div>
         </div>
         <div className="content-width legal-copy">

@@ -29,6 +29,7 @@ export default function LegalPage({
           <a href="/legal/terms">Terms</a>
           <a href="/legal/privacy">Privacy</a>
           <a href="/legal/removal#request">Remove me</a>
+          <a href="/account">Account</a>
         </nav>
         <a className="legal-home-link" href="/">Back to search →</a>
       </header>
@@ -61,6 +62,7 @@ export default function LegalPage({
             <a href="/#method">How it works</a>
             <a href="/#scores">How scores work</a>
             <a href="/#pricing">Price</a>
+            <a href="/account">Account</a>
             <a href="/#faq">FAQ</a>
           </div>
           <div>

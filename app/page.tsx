@@ -480,7 +480,7 @@ export default function Home() {
 
         <section className="comparison section-light" aria-labelledby="comparison-title">
           <div className="content-narrow">
-            <span className="section-tag yellow-tag">WHY NOT JUST GOOGLE IT</span>
+            <span className="section-tag yellow-tag">WHY NOT STANDARD IMAGE SEARCH</span>
             <h2 id="comparison-title">Reverse <em>image</em> search finds the file.<br />Promai compares the face.</h2>
             <p className="comparison-intro">Normal reverse image search hunts for copies of the exact picture. Visual similarity compares facial geometry, so a different photo may still surface as a lead.</p>
             <div className="comparison-table" role="table" aria-label="Promai and reverse image search comparison">
@@ -729,8 +729,8 @@ export default function Home() {
             <h2 id="remove-title">Remove me.</h2>
             <p>Request free de-indexing without buying a search. PROMAI verifies the request and sends removal instructions to every relevant index provider.</p>
             <form onSubmit={submitRemoval}>
-              <label>Email for case updates<input type="email" name="email" required placeholder="you@example.com" /></label>
-              <label>Public source URL<input type="url" name="url" required placeholder="https://example.com/photo" /></label>
+              <label>Email for case updates<input type="email" name="email" required placeholder="Email address" /></label>
+              <label>Public source URL<input type="url" name="url" required placeholder="Paste the public source URL" /></label>
               <label>Request details<textarea name="details" rows={3} required placeholder="Tell us what should be removed and why." /></label>
               <button type="submit">Submit free removal →</button>
             </form>
